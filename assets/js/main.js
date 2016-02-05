@@ -1,36 +1,34 @@
 /*
-	Solid State by Pixelarity
+	Gravity by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
 */
 
 (function($) {
 
-	"use strict";
-
 	skel.breakpoints({
-		xlarge:	'(max-width: 1680px)',
-		large:	'(max-width: 1280px)',
-		medium:	'(max-width: 980px)',
-		small:	'(max-width: 736px)',
-		xsmall:	'(max-width: 480px)'
+		xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
+		medium: '(max-width: 980px)',
+		small: '(max-width: 736px)',
+		xsmall: '(max-width: 480px)'
 	});
 
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body'),
-			$header = $('#header'),
-			$banner = $('#banner');
+			$body = $('body');
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
 
 			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
+				$body.removeClass('is-loading');
 			});
+
+		// Touch mode.
+			if (skel.vars.mobile)
+				$body.addClass('is-touch');
 
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
@@ -43,123 +41,129 @@
 				);
 			});
 
-		// Header.
-			if (skel.vars.IEVersion < 9)
-				$header.removeClass('alt');
+		// Dropdowns.
+			$('#nav > ul').dropotron({
+				alignment: ($body.hasClass('landing') ? 'center' : 'right'),
+				hideDelay: 400
+			});
 
-			if ($banner.length > 0
-			&&	$header.hasClass('alt')) {
+		// Off-Canvas Navigation.
 
-				$window.on('resize', function() { $window.trigger('scroll'); });
+			// Title Bar.
+				$(
+					'<div id="titleBar">' +
+						'<a href="#navPanel" class="toggle"></a>' +
+						'<span class="title">' + $('#logo').html() + '</span>' +
+					'</div>'
+				)
+					.appendTo($body);
 
-				$banner.scrollex({
-					bottom:		$header.outerHeight(),
-					terminate:	function() { $header.removeClass('alt'); },
-					enter:		function() { $header.addClass('alt'); },
-					leave:		function() { $header.removeClass('alt'); }
-				});
-
-			}
-
-		// Menu.
-			var $menu = $('#menu');
-
-			$menu._locked = false;
-
-			$menu._lock = function() {
-
-				if ($menu._locked)
-					return false;
-
-				$menu._locked = true;
-
-				window.setTimeout(function() {
-					$menu._locked = false;
-				}, 350);
-
-				return true;
-
-			};
-
-			$menu._show = function() {
-
-				if ($menu._lock())
-					$body.addClass('is-menu-visible');
-
-			};
-
-			$menu._hide = function() {
-
-				if ($menu._lock())
-					$body.removeClass('is-menu-visible');
-
-			};
-
-			$menu._toggle = function() {
-
-				if ($menu._lock())
-					$body.toggleClass('is-menu-visible');
-
-			};
-
-			$menu
-				.appendTo($body)
-				.on('click', function(event) {
-
-					event.stopPropagation();
-
-					// Hide.
-						$menu._hide();
-
-				})
-				.find('.inner')
-					.on('click', '.close', function(event) {
-
-						event.preventDefault();
-						event.stopPropagation();
-						event.stopImmediatePropagation();
-
-						// Hide.
-							$menu._hide();
-
-					})
-					.on('click', function(event) {
-						event.stopPropagation();
-					})
-					.on('click', 'a', function(event) {
-
-						var href = $(this).attr('href');
-
-						event.preventDefault();
-						event.stopPropagation();
-
-						// Hide.
-							$menu._hide();
-
-						// Redirect.
-							window.setTimeout(function() {
-								window.location.href = href;
-							}, 350);
-
+			// Navigation Panel.
+				$(
+					'<div id="navPanel">' +
+						'<nav>' +
+							$('#nav').navList() +
+						'</nav>' +
+					'</div>'
+				)
+					.appendTo($body)
+					.panel({
+						delay: 500,
+						hideOnClick: true,
+						hideOnSwipe: true,
+						resetScroll: true,
+						resetForms: true,
+						side: 'left',
+						target: $body,
+						visibleClass: 'navPanel-visible'
 					});
 
-			$body
-				.on('click', 'a[href="#menu"]', function(event) {
+			// Fix: Remove transitions on WP<10 (poor/buggy performance).
+				if (skel.vars.os == 'wp' && skel.vars.osVersion < 10)
+					$('#navPanel')
+						.css('transition', 'none');
 
-					event.stopPropagation();
-					event.preventDefault();
+		// Carousel.
+			$('.carousel').each(function() {
 
-					// Toggle.
-						$menu._toggle();
+				var	$this = $(this);
 
-				})
-				.on('keydown', function(event) {
+				if (!skel.vars.touch) {
 
-					// Hide on escape.
-						if (event.keyCode == 27)
-							$menu._hide();
+					$this.css('overflow-x', 'hidden');
 
-				});
+					// Wrapper.
+						$this.wrap('<div class="carousel-wrapper" />');
+						var $wrapper = $this.parent();
+
+					// Nav.
+						var	$navRight = $('<div class="nav right"></div>').insertAfter($this),
+							$navLeft = $('<div class="nav left"></div>').insertAfter($this),
+							intervalId;
+
+						$navLeft
+							.on('mouseenter', function() {
+								intervalId = window.setInterval(function() {
+									$this.scrollLeft( $this.scrollLeft() - 5 );
+								}, 10);
+							})
+							.on('mouseleave', function() {
+								window.clearInterval(intervalId);
+							});
+
+						$navRight
+							.on('mouseenter', function() {
+								intervalId = window.setInterval(function() {
+									$this.scrollLeft( $this.scrollLeft() + 5 );
+								}, 10);
+							})
+							.on('mouseleave', function() {
+								window.clearInterval(intervalId);
+							});
+
+					// Events.
+						$window
+							.on('resize load', function() {
+
+								if ($this.width() < $this.prop('scrollWidth'))
+									$wrapper.removeClass('no-scroll');
+								else
+									$wrapper.addClass('no-scroll');
+
+							});
+
+				}
+
+				// Poptrox.
+					var p = {
+						baseZIndex: 100001,
+						useBodyOverflow: false,
+						usePopupEasyClose: false,
+						overlayColor: '#000000',
+						overlayOpacity: 0.75,
+						usePopupDefaultStyling: false,
+						popupLoaderText: '',
+						usePopupNav: true
+					};
+
+					if (skel.breakpoint('small').active) {
+
+						p.usePopupCaption = false;
+						p.usePopupCloser = false;
+						p.windowMargin = 10;
+
+					}
+					else {
+
+						p.usePopupCaption = true;
+						p.usePopupCloser = true;
+						p.windowMargin = 50;
+
+					}
+
+					$this.poptrox(p);
+
+			});
 
 	});
 

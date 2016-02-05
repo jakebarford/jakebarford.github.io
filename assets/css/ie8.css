@@ -1,31 +1,99 @@
 /*
-	Solid State by Pixelarity
+	Gravity by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
 */
 
 /* Basic */
 
-	body {
-		-ms-behavior: url("assets/js/backgroundsize.min.htc");
-	}
-
-/* Type */
-
-	h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
-		border-bottom: solid 2px #ffffff;
+	hr {
+		border-bottom: solid 1px #ddd;
 	}
 
 	blockquote {
-		border-left: solid 4px #ffffff;
+		border-left: solid 4px #ddd;
 	}
 
 	code {
-		border: solid 2px #ffffff;
+		border: solid 1px #ddd;
+		position: relative;
+		-ms-behavior: url("assets/js/ie/PIE.htc");
 	}
 
-	hr {
-		border-bottom: solid 2px #ffffff;
+/* Form */
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		border: solid 1px #ddd;
+		position: relative;
+		-ms-behavior: url("assets/js/ie/PIE.htc");
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"] {
+		line-height: 2.75em;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		font-size: 3em;
+	}
+
+		input[type="checkbox"] + label:before,
+		input[type="radio"] + label:before {
+			display: none;
+		}
+
+/* Box */
+
+	.box {
+		border: solid 1px #ddd;
+		position: relative;
+		-ms-behavior: url("assets/js/ie/PIE.htc");
+	}
+
+/* Image */
+
+	.image {
+		position: relative;
+		-ms-behavior: url("assets/js/ie/PIE.htc");
+	}
+
+		.image img {
+			position: relative;
+			-ms-behavior: url("assets/js/ie/PIE.htc");
+		}
+
+/* List */
+
+	ul.alt li {
+		border-top: solid 1px #ddd;
+	}
+
+		ul.alt li:first-child {
+			border-top: 0;
+		}
+
+/* Table */
+
+	table tbody tr {
+		border: solid 1px #ddd;
+	}
+
+	table thead {
+		border-bottom: solid 2px #ddd;
+	}
+
+	table tfoot {
+		border-top: solid 2px #ddd;
+	}
+
+	table.alt tbody tr td {
+		border: solid 1px #ddd;
 	}
 
 /* Button */
@@ -33,131 +101,78 @@
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
-	button,
 	.button {
 		position: relative;
 		-ms-behavior: url("assets/js/ie/PIE.htc");
-		border: solid 2px #ffffff;
 	}
 
-		input[type="submit"].special,
-		input[type="reset"].special,
-		input[type="button"].special,
-		button.special,
-		.button.special {
-			border: 0;
+		input[type="submit"].alt,
+		input[type="reset"].alt,
+		input[type="button"].alt,
+		.button.alt {
+			border: solid 2px #ddd;
 		}
 
-/* Form */
+/* Feature */
 
-	input[type="text"],
-	input[type="password"],
-	input[type="email"],
-	input[type="tel"],
-	select,
-	textarea {
-		position: relative;
-		-ms-behavior: url("assets/js/ie/PIE.htc");
-		background: transparent;
-		border: solid 2px #ffffff;
-	}
-
-/* Table */
-
-	table tbody tr {
-		border: solid 1px #ffffff;
-		border-left: 0;
-		border-right: 0;
-	}
-
-	table.alt tbody tr td {
-		border: solid 1px #ffffff;
-		border-left-width: 0;
-		border-top-width: 0;
-	}
-
-		table.alt tbody tr td:first-child {
-			border-left-width: 1px;
-		}
-
-	table.alt tbody tr:first-child td {
-		border-top-width: 1px;
-	}
-
-	table.alt thead {
-		border-bottom: 0;
-	}
-
-	table.alt tfoot {
-		border-top: 0;
-	}
-
-/* Features */
-
-	.features article {
-		-ms-behavior: url("assets/js/ie/PIE.htc");
-		position: relative;
-		width: 44%;
-	}
-
-		.features article .image {
-			margin-top: 0;
-			margin-left: 0;
-			width: 100%;
-		}
-
-/* Menu */
-
-	#menu {
-		background: #2e3141;
-	}
-
-		#menu h2 {
-			border-bottom: solid 2px #ffffff;
-		}
-
-/* Header */
-
-	#header {
-		background-color: #353849;
+	.feature {
+		border-top: solid 1px #ddd;
 	}
 
 /* Wrapper */
 
-	.wrapper {
-		margin: 0;
+	.wrapper.style1 + .wrapper.style1 {
+		border-top: 1px solid #ddd;
 	}
 
-		.wrapper:before, .wrapper:after {
-			display: none;
-		}
+/* Header */
 
-		.wrapper.spotlight .image {
-			-ms-behavior: url("assets/js/ie/PIE.htc");
-		}
+	#header {
+		border-bottom: solid 1px #ddd;
+	}
 
-			.wrapper.spotlight .image img {
-				position: relative;
-				-ms-behavior: url("assets/js/ie/PIE.htc");
-			}
-
-/* Banner */
-
-	#banner .logo .icon {
-		border: solid 2px #ffffff;
+	.dropotron {
+		border: solid 1px #ddd;
+		box-shadow: none !important;
+		margin-top: 0 !important;
 		-ms-behavior: url("assets/js/ie/PIE.htc");
 	}
 
-	#banner h2 {
-		border-bottom: solid 2px #ffffff;
+		.dropotron.level-0:before {
+			display: none;
+		}
+
+/* Banner */
+
+	#banner {
+		background-image: url("../../images/banner.jpg");
+		background-size: cover;
+		position: relative;
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
 	}
+
+		#banner:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: url("images/overlay.png");
+		}
+
+		#banner > * {
+			position: relative;
+			z-index: 1;
+		}
 
 /* Footer */
 
-	#footer .inner .copyright {
-		border-top: solid 2px #ffffff;
+	#footer .button.alt {
+		border-color: #777;
 	}
 
-		#footer .inner .copyright li {
-			border-left: solid 2px #ffffff;
-		}
+	#footer .copyright li {
+		border-left: solid 1px #ddd;
+	}
