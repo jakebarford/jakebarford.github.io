@@ -3,10 +3,10 @@
 @import 'libs/mixins';
 @import 'libs/skel';
 @import 'font-awesome.min.css';
-@import url('http://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,700");
 
 /*
-	Eventually by Pixelarity
+	Lens by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
 */
@@ -16,9 +16,7 @@
 		large: '(max-width: 1280px)',
 		medium: '(max-width: 980px)',
 		small: '(max-width: 736px)',
-		xsmall: '(max-width: 480px)',
-		xxsmall: '(max-width: 360px)',
-		short: '(max-height: 640px)'
+		xsmall: '(max-width: 480px)'
 	));
 
 	@include skel-layout((
@@ -29,19 +27,19 @@
 // Base.
 
 	@import 'base/page';
-	@import 'base/bg';
 	@import 'base/typography';
 
-// Components.
+// Component.
 
-	@import 'components/section';
+	@import 'components/button';
+	@import 'components/form';
 	@import 'components/icon';
 	@import 'components/list';
-	@import 'components/form';
-	@import 'components/button';
 
 // Layout.
 
+	@import 'layout/main';
 	@import 'layout/header';
-	@import 'layout/signup-form';
 	@import 'layout/footer';
+	@import 'layout/thumbnails';
+	@import 'layout/viewer';

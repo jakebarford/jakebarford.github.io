@@ -4,29 +4,13 @@
 @import 'libs/skel';
 
 /*
-	Eventually by Pixelarity
+	Lens by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
 */
 
-/* BG */
+/* Viewer */
 
-	#bg {
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
-	}
-
-/* Type */
-
-	body, input, select, textarea {
-		color: _palette(fg-bold);
-	}
-
-/* Form */
-
-	input[type="text"],
-	input[type="password"],
-	input[type="email"],
-	select,
-	textarea {
-		border: solid _size(border-width) _palette(fg-bold);
+	#viewer {
+		width: 100%;
 	}

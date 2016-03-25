@@ -3,7 +3,7 @@
 @import '../libs/mixins';
 
 ///
-/// Eventually by Pixelarity
+/// Lens by Pixelarity
 /// pixelarity.com @pixelarity
 /// License: pixelarity.com/license
 ///
@@ -12,57 +12,14 @@
 
 	form {
 		margin: 0 0 _size(element-margin) 0;
-
-		.message {
-			@include icon;
-			@include vendor('transition', (
-				'opacity #{_duration(transition)} ease-in-out',
-				'transform #{_duration(transition)} ease-in-out'
-			));
-			@include vendor('transform', 'scale(1.05)');
-			height: _size(element-height);
-			line-height: _size(element-height);
-			opacity: 0;
-
-			&:before {
-				margin-right: 0.5em;
-			}
-
-			&.visible {
-				@include vendor('transform', 'scale(1)');
-				opacity: 1;
-			}
-
-			&.success {
-				color: _palette(positive, bg);
-
-				&:before {
-					content: '\f00c';
-				}
-			}
-
-			&.failure {
-				color: _palette(negative, bg);
-
-				&:before {
-					content: '\f119';
-				}
-			}
-		}
 	}
 
 	label {
 		color: _palette(fg-bold);
 		display: block;
 		font-size: 0.9em;
-		font-weight: _font(weight-bold);
+		font-weight: _font(weight);
 		margin: 0 0 (_size(element-margin) * 0.5) 0;
-	}
-
-	@include keyframes(focus) {
-		0% { @include vendor('transform', 'scale(1)'); }
-		50% { @include vendor('transform', 'scale(1.025)'); }
-		100% { @include vendor('transform', 'scale(1)'); }
 	}
 
 	input[type="text"],
@@ -71,19 +28,13 @@
 	select,
 	textarea {
 		@include vendor('appearance', 'none');
-		@include vendor('transform', 'scale(1)');
-		@include vendor('transition', (
-			'border-color #{_duration(transition)} ease',
-			'background-color #{_duration(transition)} ease'
-		));
 		background-color: transparent;
 		border-radius: _size(border-radius);
-		border: none;
 		border: solid _size(border-width) _palette(border);
 		color: inherit;
 		display: block;
 		outline: 0;
-		padding: 0 1em;
+		padding: 0 0.75em;
 		text-decoration: none;
 		width: 100%;
 
@@ -92,9 +43,7 @@
 		}
 
 		&:focus {
-			@include vendor('animation', 'focus 0.1s');
-			background-color: _palette(border-bg);
-			border-color: _palette(accent, bg);
+			border-color: _palette(accent);
 		}
 	}
 
@@ -105,7 +54,7 @@
 
 		&:before {
 			color: _palette(border);
-			content: '\f078';
+			content: '\f107';
 			display: block;
 			height: _size(element-height);
 			line-height: _size(element-height);
@@ -150,12 +99,13 @@
 			display: inline-block;
 			font-size: 1em;
 			font-weight: _font(weight);
+			margin: 0;
 			padding-left: (_size(element-height) * 0.6) + 0.75em;
 			padding-right: 0.75em;
 			position: relative;
 
 			&:before {
-				background: _palette(border-bg);
+				background: transparent;
 				border-radius: _size(border-radius);
 				border: solid _size(border-width) _palette(border);
 				content: '';
@@ -172,17 +122,16 @@
 
 		&:checked + label {
 			&:before {
-				background: _palette(accent, bg);
-				border-color: _palette(accent, bg);
-				color: _palette(accent, fg-bold);
+				background-color: _palette(fg-bold);
+				border-color: _palette(fg-bold);
+				color: _palette(bg);
 				content: '\f00c';
 			}
 		}
 
 		&:focus + label {
 			&:before {
-				border-color: _palette(accent, bg);
-				box-shadow: 0 0 0 _size(border-width) _palette(accent, bg);
+				border-color: _palette(accent);
 			}
 		}
 	}
@@ -204,26 +153,30 @@
 	}
 
 	::-webkit-input-placeholder {
-		color: _palette(fg-light) !important;
 		opacity: 1.0;
+		color: _palette(fg-light) !important;
 	}
 
 	:-moz-placeholder {
-		color: _palette(fg-light) !important;
 		opacity: 1.0;
+		color: _palette(fg-light) !important;
 	}
 
 	::-moz-placeholder {
-		color: _palette(fg-light) !important;
 		opacity: 1.0;
+		color: _palette(fg-light) !important;
 	}
 
 	:-ms-input-placeholder {
-		color: _palette(fg-light) !important;
 		opacity: 1.0;
+		color: _palette(fg-light) !important;
 	}
 
 	.formerize-placeholder {
-		color: _palette(fg-light) !important;
 		opacity: 1.0;
+		color: _palette(fg-light) !important;
+	}
+
+	.field {
+		margin: 0 0 _size(element-margin) 0;
 	}
