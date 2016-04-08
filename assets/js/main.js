@@ -1,5 +1,5 @@
 /*
-	Highlights by Pixelarity
+	Gravity by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
 */
@@ -7,7 +7,8 @@
 (function($) {
 
 	skel.breakpoints({
-		large: '(max-width: 1680px)',
+		xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
 		medium: '(max-width: 980px)',
 		small: '(max-width: 736px)',
 		xsmall: '(max-width: 480px)'
@@ -16,63 +17,18 @@
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body'),
-			$html = $('html');
+			$body = $('body');
 
 		// Disable animations/transitions until the page has loaded.
-			$html.addClass('is-loading');
+			$body.addClass('is-loading');
 
 			$window.on('load', function() {
-				window.setTimeout(function() {
-					$html.removeClass('is-loading');
-				}, 0);
+				$body.removeClass('is-loading');
 			});
 
 		// Touch mode.
-			if (skel.vars.mobile) {
-
-				var $wrapper;
-
-				// Create wrapper.
-					$body.wrapInner('<div id="wrapper" />');
-					$wrapper = $('#wrapper');
-
-					// Hack: iOS vh bug.
-						if (skel.vars.os == 'ios')
-							$wrapper
-								.css('margin-top', -25)
-								.css('padding-bottom', 25);
-
-					// Pass scroll event to window.
-						$wrapper.on('scroll', function() {
-							$window.trigger('scroll');
-						});
-
-				// Scrolly.
-					$window.on('load.hl_scrolly', function() {
-
-						$('.scrolly').scrolly({
-							speed: 1500,
-							parent: $wrapper,
-							pollOnce: true
-						});
-
-						$window.off('load.hl_scrolly');
-
-					});
-
-				// Enable touch mode.
-					$html.addClass('is-touch');
-
-			}
-			else {
-
-				// Scrolly.
-					$('.scrolly').scrolly({
-						speed: 1500
-					});
-
-			}
+			if (skel.vars.mobile)
+				$body.addClass('is-touch');
 
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
@@ -85,132 +41,127 @@
 				);
 			});
 
-		// Header.
-			var $header = $('#header'),
-				$headerTitle = $header.find('header'),
-				$headerContainer = $header.find('.container');
+		// Dropdowns.
+			$('#nav > ul').dropotron({
+				alignment: ($body.hasClass('landing') ? 'center' : 'right'),
+				hideDelay: 400
+			});
 
-			// Make title fixed.
-				if (!skel.vars.mobile) {
+		// Off-Canvas Navigation.
 
-					$window.on('load.hl_headerTitle', function() {
+			// Title Bar.
+				$(
+					'<div id="titleBar">' +
+						'<a href="#navPanel" class="toggle"></a>' +
+						'<span class="title">' + $('#logo').html() + '</span>' +
+					'</div>'
+				)
+					.appendTo($body);
 
-						skel.on('-medium !medium', function() {
-
-							$headerTitle
-								.css('position', 'fixed')
-								.css('height', 'auto')
-								.css('top', '50%')
-								.css('left', '0')
-								.css('width', '100%')
-								.css('margin-top', ($headerTitle.outerHeight() / -2));
-
-						});
-
-						skel.on('+medium', function() {
-
-							$headerTitle
-								.css('position', '')
-								.css('height', '')
-								.css('top', '')
-								.css('left', '')
-								.css('width', '')
-								.css('margin-top', '');
-
-						});
-
-						$window.off('load.hl_headerTitle');
-
+			// Navigation Panel.
+				$(
+					'<div id="navPanel">' +
+						'<nav>' +
+							$('#nav').navList() +
+						'</nav>' +
+					'</div>'
+				)
+					.appendTo($body)
+					.panel({
+						delay: 500,
+						hideOnClick: true,
+						hideOnSwipe: true,
+						resetScroll: true,
+						resetForms: true,
+						side: 'left',
+						target: $body,
+						visibleClass: 'navPanel-visible'
 					});
+
+			// Fix: Remove transitions on WP<10 (poor/buggy performance).
+				if (skel.vars.os == 'wp' && skel.vars.osVersion < 10)
+					$('#navPanel')
+						.css('transition', 'none');
+
+		// Carousel.
+			$('.carousel').each(function() {
+
+				var	$this = $(this);
+
+				if (!skel.vars.touch) {
+
+					$this.css('overflow-x', 'hidden');
+
+					// Wrapper.
+						$this.wrap('<div class="carousel-wrapper" />');
+						var $wrapper = $this.parent();
+
+					// Nav.
+						var	$navRight = $('<div class="nav right"></div>').insertAfter($this),
+							$navLeft = $('<div class="nav left"></div>').insertAfter($this),
+							intervalId;
+
+						$navLeft
+							.on('mouseenter', function() {
+								intervalId = window.setInterval(function() {
+									$this.scrollLeft( $this.scrollLeft() - 5 );
+								}, 10);
+							})
+							.on('mouseleave', function() {
+								window.clearInterval(intervalId);
+							});
+
+						$navRight
+							.on('mouseenter', function() {
+								intervalId = window.setInterval(function() {
+									$this.scrollLeft( $this.scrollLeft() + 5 );
+								}, 10);
+							})
+							.on('mouseleave', function() {
+								window.clearInterval(intervalId);
+							});
+
+					// Events.
+						$window
+							.on('resize load', function() {
+
+								if ($this.width() < $this.prop('scrollWidth'))
+									$wrapper.removeClass('no-scroll');
+								else
+									$wrapper.addClass('no-scroll');
+
+							});
 
 				}
 
-			// Scrollex.
-				skel.on('-small !small', function() {
-					$header.scrollex({
-						terminate: function() {
-
-							$headerTitle.css('opacity', '');
-
-						},
-						scroll: function(progress) {
-
-							// Fade out title as user scrolls down.
-								if (progress > 0.5)
-									x = 1 - progress;
-								else
-									x = progress;
-
-								$headerTitle.css('opacity', Math.max(0, Math.min(1, x * 2)));
-
-						}
-					});
-				});
-
-				skel.on('+small', function() {
-
-					$header.unscrollex();
-
-				});
-
-		// Main sections.
-			$('.main').each(function() {
-
-				var $this = $(this),
-					$primaryImg = $this.find('.image.primary > img'),
-					$bg,
-					options;
-
-				// No primary image? Bail.
-					if ($primaryImg.length == 0)
-						return;
-
-				// Hack: IE8 fallback.
-					if (skel.vars.IEVersion < 9) {
-
-						$this
-							.css('background-image', 'url("' + $primaryImg.attr('src') + '")')
-							.css('-ms-behavior', 'url("css/ie/backgroundsize.min.htc")');
-
-						return;
-
-					}
-
-				// Create bg and append it to body.
-					$bg = $('<div class="main-bg" id="' + $this.attr('id') + '-bg"></div>')
-						.css('background-image', (
-							'url("css/images/overlay.png"), url("' + $primaryImg.attr('src') + '")'
-						))
-						.appendTo($body);
-
-				// Scrollex.
-					options = {
-						mode: 'middle',
-						delay: 200,
-						top: '-10vh',
-						bottom: '-10vh'
+				// Poptrox.
+					var p = {
+						baseZIndex: 100001,
+						useBodyOverflow: false,
+						usePopupEasyClose: false,
+						overlayColor: '#000000',
+						overlayOpacity: 0.75,
+						usePopupDefaultStyling: false,
+						popupLoaderText: '',
+						usePopupNav: true
 					};
 
-					if (skel.canUse('transition')) {
+					if (skel.breakpoint('small').active) {
 
-						options.init = function() { $bg.removeClass('active'); };
-						options.enter = function() { $bg.addClass('active'); };
-						options.leave = function() { $bg.removeClass('active'); };
+						p.usePopupCaption = false;
+						p.usePopupCloser = false;
+						p.windowMargin = 10;
 
 					}
 					else {
 
-						$bg
-							.css('opacity', 1)
-							.hide();
-
-						options.init = function() { $bg.fadeOut(0); };
-						options.enter = function() { $bg.fadeIn(400); };
-						options.leave = function() { $bg.fadeOut(400); };
+						p.usePopupCaption = true;
+						p.usePopupCloser = true;
+						p.windowMargin = 50;
 
 					}
 
-					$this.scrollex(options);
+					$this.poptrox(p);
 
 			});
 

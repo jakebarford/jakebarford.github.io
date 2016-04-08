@@ -6,54 +6,42 @@
 // Duration.
 	$duration: (
 		transition:			0.2s,
-		loader-fadein:		1s,
-		bg-fadein:			0.5s
+		navPanel:			0.5s
 	);
 
 // Size.
 	$size: (
-		element-height:		3em,
-		element-margin:		2em
+		border-radius:		4px,
+		element-height:		2.75em,
+		element-margin:		2em,
+		navPanel:			275px
 	);
 
 // Font.
 	$font: (
-		family:				('Raleway', 'Helvetica', sans-serif),
+		family:				('Raleway', Helvetica, sans-serif),
 		family-fixed:		('Courier New', monospace),
+		letter-spacing:		0.11em,
 		weight:				400,
-		weight-bold:		700,
-		weight-heavy:		800
+		weight-bold:		700
 	);
 
 // Palette.
 	$palette: (
 		bg:					#fff,
-		fg:					#6f7577,
-		fg-bold:			#61686b,
-		fg-light:			#a8b0b3,
-		fg-lighter:			#e8f0f3,
-		border:				#dddddd,
+		fg:					#888,
+		fg-bold:			#616161,
+		fg-light:			#a7a7a7,
+		border:				rgba(144,144,144,0.25),
 		border-bg:			rgba(144,144,144,0.075),
-		border2:			#d3d3d3,
-		border2-bg:			rgba(144,144,144,0.15),
-
-		alt: (
-			fg-bold:		#ffffff,
-			fg:				rgba(255,255,255,0.5),
-			fg-light:		rgba(255,255,255,0.35),
-			fg-lighter:		rgba(255,255,255,0.2),
-			border:			#ffffff,
-			border-bg:		rgba(255,255,255,0.075),
-			border2:		#ffffff,
-			border2-bg:		rgba(255,255,255,0.15)
-		),
+		border2:			rgba(144,144,144,0.5),
+		border2-bg:			rgba(144,144,144,0.2),
 
 		accent1: (
-			bg:				#ee676d,
+			bg:				#4fc2cd,
 			fg-bold:		#ffffff,
-			fg:				mix(#ee676d, #ffffff, 25%),
-			fg-light:		mix(#ee676d, #ffffff, 40%),
-			fg-lighter:		mix(#ee676d, #ffffff, 90%),
+			fg:				mix(#4fc2cd, #ffffff, 25%),
+			fg-light:		mix(#4fc2cd, #ffffff, 40%),
 			border:			rgba(255,255,255,0.25),
 			border-bg:		rgba(255,255,255,0.075),
 			border2:		rgba(255,255,255,0.5),
@@ -61,11 +49,10 @@
 		),
 
 		accent2: (
-			bg:				#313a3d,
+			bg:				#292929,
 			fg-bold:		#ffffff,
-			fg:				mix(#313a3d, #ffffff, 25%),
-			fg-light:		mix(#313a3d, #ffffff, 40%),
-			fg-lighter:		mix(#313a3d, #ffffff, 90%),
+			fg:				mix(#292929, #ffffff, 25%),
+			fg-light:		mix(#292929, #ffffff, 40%),
 			border:			rgba(255,255,255,0.25),
 			border-bg:		rgba(255,255,255,0.075),
 			border2:		rgba(255,255,255,0.5),

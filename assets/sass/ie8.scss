@@ -4,33 +4,27 @@
 @import 'libs/skel';
 
 /*
-	Highlights by Pixelarity
+	Gravity by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
 */
 
+$color-border: #ddd;
+
 /* Basic */
 
-	body, html {
-		height: 100%;
+	hr {
+		border-bottom: solid 1px $color-border;
 	}
 
-	html {
-		background: none;
+	blockquote {
+		border-left: solid 4px $color-border;
 	}
 
-/* List */
-
-	ul {
-		&.actions {
-			li {
-				padding: 0 0 0 (_size(element-margin) * 0.5);
-
-				&:first-child {
-					padding-left: 0;
-				}
-			}
-		}
+	code {
+		border: solid 1px $color-border;
+		position: relative;
+		-ms-behavior: url('assets/js/ie/PIE.htc');
 	}
 
 /* Form */
@@ -40,8 +34,9 @@
 	input[type="email"],
 	select,
 	textarea {
-		border: solid 2px _palette(border);
+		border: solid 1px $color-border;
 		position: relative;
+		-ms-behavior: url('assets/js/ie/PIE.htc');
 	}
 
 	input[type="text"],
@@ -61,50 +56,94 @@
 		}
 	}
 
+/* Box */
+
+	.box {
+		border: solid 1px $color-border;
+		position: relative;
+		-ms-behavior: url('assets/js/ie/PIE.htc');
+	}
+
+/* Image */
+
+	.image {
+		position: relative;
+		-ms-behavior: url('assets/js/ie/PIE.htc');
+
+		img {
+			position: relative;
+			-ms-behavior: url('assets/js/ie/PIE.htc');
+		}
+	}
+
+/* List */
+
+	ul {
+		&.alt {
+			li {
+				border-top: solid 1px $color-border;
+
+				&:first-child {
+					border-top: 0;
+				}
+			}
+		}
+	}
+
+/* Table */
+
+	table {
+		tbody {
+			tr {
+				border: solid 1px $color-border;
+			}
+		}
+
+		thead {
+			border-bottom: solid 2px $color-border;
+		}
+
+		tfoot {
+			border-top: solid 2px $color-border;
+		}
+
+		&.alt {
+			tbody {
+				tr {
+					td {
+						border: solid 1px $color-border;
+					}
+				}
+			}
+		}
+	}
+
 /* Button */
 
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
-	button,
 	.button {
-		border: solid 2px _palette(border);
-	}
+		position: relative;
+		-ms-behavior: url('assets/js/ie/PIE.htc');
 
-/* Main BG */
-
-	.main-bg {
-		z-index: 0;
-	}
-
-/* Main */
-
-	.main {
-		background-size: cover;
-
-		.container {
-			background: _palette(bg);
-			border-top: solid 1px _palette(border);
-			position: relative;
-			z-index: 1;
+		&.alt {
+			border: solid 2px $color-border;
 		}
+	}
 
-		.goto-next {
-			@include icon;
+/* Feature */
 
-			&:before {
-				color: _palette(border);
-				content: '\f063';
-				display: block;
-				font-size: 2em;
-				height: 2em;
-				left: 0;
-				line-height: 2em;
-				position: absolute;
-				text-align: center;
-				text-indent: 0;
-				top: 0;
-				width: 2em;
+	.feature {
+		border-top: solid 1px $color-border;
+	}
+
+/* Wrapper */
+
+	.wrapper {
+		&.style1 {
+			& + & {
+				border-top: 1px solid $color-border;
 			}
 		}
 	}
@@ -112,22 +151,43 @@
 /* Header */
 
 	#header {
-		-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
-		background-image: url('../../images/bg.jpg');
+		border-bottom: solid 1px $color-border;
+	}
+
+	.dropotron {
+		border: solid 1px $color-border;
+		box-shadow: none !important;
+		margin-top: 0 !important;
+		-ms-behavior: url('assets/js/ie/PIE.htc');
+
+		&.level-0 {
+			&:before {
+				display: none;
+			}
+		}
+	}
+
+/* Banner */
+
+	#banner {
+		background-image: url('../../images/banner.jpg');
 		background-size: cover;
-		height: 100%;
+		position: relative;
+		-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
 
-		&:after {
-			min-height: 100%;
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: url('images/overlay.png');
 		}
 
-		header {
+		> * {
 			position: relative;
-			z-index: 1;
-		}
-
-		.container {
-			background: _palette(bg);
 			z-index: 1;
 		}
 	}
@@ -135,14 +195,15 @@
 /* Footer */
 
 	#footer {
-		-ms-behavior: url('assets/js/ie/backgroundsize.min.htc');
-		background-image: url('../../images/bg.jpg');
-		background-size: cover;
+		.button {
+			&.alt {
+				border-color: #777;
+			}
+		}
 
-		.container {
-			background: _palette(bg);
-			border-top: solid 1px _palette(border);
-			position: relative;
-			z-index: 1;
+		.copyright {
+			li {
+				border-left: solid 1px $color-border;
+			}
 		}
 	}
