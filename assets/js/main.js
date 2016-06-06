@@ -32,7 +32,7 @@
 
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
-
+        
 		// Prioritize "important" elements on medium.
 			skel.on('+medium -medium', function() {
 				$.prioritize(
@@ -41,6 +41,13 @@
 				);
 			});
 
+        // Scrolly.
+			$('.scrolly')
+				.scrolly({
+					speed: 1500,
+					offset: $header.outerHeight()
+				});
+        
 		// Dropdowns.
 			$('#nav > ul').dropotron({
 				alignment: ($body.hasClass('landing') ? 'center' : 'right'),
