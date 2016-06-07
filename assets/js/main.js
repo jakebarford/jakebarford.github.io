@@ -41,13 +41,6 @@
 				);
 			});
 
-        // Scrolly.
-			$('.scrolly')
-				.scrolly({
-					speed: 1500,
-					offset: $header.outerHeight()
-				});
-        
 		// Dropdowns.
 			$('#nav > ul').dropotron({
 				alignment: ($body.hasClass('landing') ? 'center' : 'right'),
