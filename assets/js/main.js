@@ -148,14 +148,14 @@
 
 					if (skel.breakpoint('small').active) {
 
-						p.usePopupCaption = false;
+						p.usePopupCaption = true;
 						p.usePopupCloser = false;
 						p.windowMargin = 10;
 
 					}
 					else {
 
-						p.usePopupCaption = true;
+						p.usePopupCaption = false;
 						p.usePopupCloser = true;
 						p.windowMargin = 50;
 
