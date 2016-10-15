@@ -43,41 +43,41 @@
 					<!-- Form -->
 				    
                     <hr />
-                    <center>
-                    <form action="." method="post">
-                            <noscript>You must <a href="http://www.enable-javascript.com" target="_blank">enable JavaScript</a> in your web browser in order to pay via Stripe.</noscript>
+                    <form action="" method="POST" id="payment-form">
+                      <span class="payment-errors"></span>
 
-                            <input 
-                                type="submit" 
-                                value="Pay with Card"
-                                data-key="pk_test_gWZRxP7snTFOfFovC3sycEcO"
-                                data-amount="34999"
-                                data-name="JB Web Design"
-                                data-description="Creation of one responsive site"
-                                data-image="/images/pic01.jpg"
-                                data-locale="auto"
-                                data-currency="GBP"
-                            />
+                      <div class="form-row">
+                        <label>
+                          <span>Card Number</span>
+                          <input type="text" size="20" data-stripe="number">
+                        </label>
+                      </div>
 
-                            <script src="https://checkout.stripe.com/v2/checkout.js"></script>
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-                            <script>
-                            $(document).ready(function() {
-                                $(':submit').on('click', function(event) {
-                                    event.preventDefault();
-                                    var $button = $(this),
-                                        $form = $button.parents('form');
-                                    var opts = $.extend({}, $button.data(), {
-                                        token: function(result) {
-                                            $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
-                                        }
-                                    });
-                                    StripeCheckout.open(opts);
-                                });
-                            });
-                            </script>
-                    </form>  
-                    </center>
+                      <div class="form-row">
+                        <label>
+                          <span>Expiration (MM/YY)</span>
+                          <input type="text" size="2" data-stripe="exp_month">
+                        </label>
+                        <span> / </span>
+                        <input type="text" size="2" data-stripe="exp_year">
+                      </div>
+
+                      <div class="form-row">
+                        <label>
+                          <span>CVC</span>
+                          <input type="text" size="4" data-stripe="cvc">
+                        </label>
+                      </div>
+
+                      <div class="form-row">
+                        <label>
+                          <span>Billing Zip</span>
+                          <input type="text" size="6" data-stripe="address_zip">
+                        </label>
+                      </div>
+
+                      <input type="submit" class="submit" value="Submit Payment">
+                    </form>
                 </div>
             </section>
 
@@ -157,6 +157,46 @@
 			<script src="assets/js/jquery.onvisible.min.js"></script>
 			<script src="assets/js/jquery.poptrox.min.js"></script>
 			<script src="assets/js/util.js"></script>
+            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+            <script type="text/javascript">
+                Stripe.setPublishableKey('pk_test_gWZRxP7snTFOfFovC3sycEcO');
+                $(function() {
+                  var $form = $('#payment-form');
+                  $form.submit(function(event) {
+                    // Disable the submit button to prevent repeated clicks:
+                    $form.find('.submit').prop('disabled', true);
+
+                    // Request a token from Stripe:
+                    Stripe.card.createToken($form, stripeResponseHandler);
+
+                    // Prevent the form from being submitted:
+                    return false;
+                  });
+                });
+              
+                function stripeResponseHandler(status, response) {
+                  // Grab the form:
+                  var $form = $('#payment-form');
+
+                  if (response.error) { // Problem!
+
+                    // Show the errors on the form:
+                    $form.find('.payment-errors').text(response.error.message);
+                    $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+                  } else { // Token was created!
+
+                    // Get the token ID:
+                    var token = response.id;
+
+                    // Insert the token ID into the form so it gets submitted to the server:
+                    $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+                    // Submit the form:
+                    $form.get(0).submit();
+                  }
+                };         
+            </script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
