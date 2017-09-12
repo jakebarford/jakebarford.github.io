@@ -1,0 +1,1 @@
+log.warn("Placeholder page loaded."),VyprVPN=new Vypr,VyprVPN.init();

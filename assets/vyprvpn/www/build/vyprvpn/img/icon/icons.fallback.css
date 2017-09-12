@@ -1,0 +1,84 @@
+.i-beta { background-image: url('png/beta.png'); background-repeat: no-repeat; }
+
+.i-cancel { background-image: url('png/cancel.png'); background-repeat: no-repeat; }
+
+.vypr--message.is-error .i-close,
+.i-close-error { background-image: url('png/close-error.png'); background-repeat: no-repeat; }
+
+.vypr--message.is-notice .i-close,
+.i-close-notice { background-image: url('png/close-notice.png'); background-repeat: no-repeat; }
+
+.vypr--message.is-success .i-close,
+.i-close-success { background-image: url('png/close-success.png'); background-repeat: no-repeat; }
+
+.vypr--message.is-warning .i-close,
+.i-close-warning { background-image: url('png/close-warning.png'); background-repeat: no-repeat; }
+
+.i-close-white { background-image: url('png/close-white.png'); background-repeat: no-repeat; }
+
+.i-close { background-image: url('png/close.png'); background-repeat: no-repeat; }
+
+.i-download { background-image: url('png/download.png'); background-repeat: no-repeat; }
+
+[open] .i-dropdown,
+.i-dropdown-active { background-image: url('png/dropdown-active.png'); background-repeat: no-repeat; }
+
+.vypr--formfields-selectwrap:after,
+.i-dropdown { background-image: url('png/dropdown.png'); background-repeat: no-repeat; }
+
+.i-edit { background-image: url('png/edit.png'); background-repeat: no-repeat; }
+
+.i-feedback { background-image: url('png/feedback.png'); background-repeat: no-repeat; }
+
+.i-forums { background-image: url('png/forums.png'); background-repeat: no-repeat; }
+
+.i-improve { background-image: url('png/improve.png'); background-repeat: no-repeat; }
+
+.i-key { background-image: url('png/key.png'); background-repeat: no-repeat; }
+
+.i-location { background-image: url('png/location.png'); background-repeat: no-repeat; }
+
+.i-logo { background-image: url('png/logo.png'); background-repeat: no-repeat; }
+
+.i-padlock-locked { background-image: url('png/padlock-locked.png'); background-repeat: no-repeat; }
+
+.i-padlock-unlocked { background-image: url('png/padlock-unlocked.png'); background-repeat: no-repeat; }
+
+.is-active .i-ping,
+.i-ping-active { background-image: url('png/ping-active.png'); background-repeat: no-repeat; }
+
+.i-ping { background-image: url('png/ping.png'); background-repeat: no-repeat; }
+
+.i-question { background-image: url('png/question.png'); background-repeat: no-repeat; }
+
+.i-settings { background-image: url('png/settings.png'); background-repeat: no-repeat; }
+
+.i-state-error-alt { background-image: url('png/state-error-alt.png'); background-repeat: no-repeat; }
+
+.vypr--message.layout-global.is-error .i-message,
+.vypr--message.layout-local.is-error .i-message,
+.autosaveblock.is-error .i-status,
+.i-state-error { background-image: url('png/state-error.png'); background-repeat: no-repeat; }
+
+.i-state-success-alt { background-image: url('png/state-success-alt.png'); background-repeat: no-repeat; }
+
+.vypr--message.layout-global.is-success .i-message,
+.vypr--message.layout-local.is-success .i-message,
+.autosaveblock.is-success .i-status,
+.i-state-success { background-image: url('png/state-success.png'); background-repeat: no-repeat; }
+
+.i-state-warning-alt { background-image: url('png/state-warning-alt.png'); background-repeat: no-repeat; }
+
+.vypr--message.layout-global.is-warning .i-message,
+.vypr--message.layout-local.is-warning .i-message,
+.autosaveblock.is-warning .i-status,
+.i-state-warning { background-image: url('png/state-warning.png'); background-repeat: no-repeat; }
+
+.i-time { background-image: url('png/time.png'); background-repeat: no-repeat; }
+
+.i-triangle-white { background-image: url('png/triangle-white.png'); background-repeat: no-repeat; }
+
+.sorttable_sorted:after,
+.sorttable_sorted_reverse:after,
+.i-triangle { background-image: url('png/triangle.png'); background-repeat: no-repeat; }
+

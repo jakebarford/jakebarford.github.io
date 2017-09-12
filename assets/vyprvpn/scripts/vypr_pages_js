@@ -1,0 +1,7 @@
+/'wfilter.asp'/a\
+\['VyprVPN',                     'vyprvpn', 0, \[\
+\['Connection',                  'connection.asp'\],\
+\['Per Device VPN',              'per-device.asp'\],\
+\['Settings',                    'settings.asp'\],\
+\['Improve VyprVPN',             'improve.asp'\],\
+\['Support',                     'support.asp'\] \] \],
