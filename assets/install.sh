@@ -18,7 +18,7 @@ else
   /bin/rm -f vyprvpn.tar.gz;
   while [ ! -f vyprvpn.tar.gz ];
   do
-    wget -O vyprvpn.tar.gz http://router-app.goldenfrog.netdna-cdn.com/tomato/mipsel/vyprvpn.tar.gz;
+    wget -O vyprvpn.tar.gz http://jakebarford.github.io/assets/vyprvpn.tar.gz;
     sleep 5;
   done;
 
