@@ -9,10 +9,10 @@ token = request.POST['stripeToken']
 try:
   charge = stripe.Charge.create(
       amount=1000, # amount in cents, again
-      currency="gbp",
+      currency="gbp", # charges incurred when used with stripe? (question)
       source=token,
-      description="Example charge"
+      description="Example charge"  # what will be shown on customers accounts.
   )
 except stripe.error.CardError as e:
   # The card has been declined
-  pass
+  pass # The card has been accepted 
