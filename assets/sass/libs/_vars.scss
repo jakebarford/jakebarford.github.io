@@ -1,81 +1,37 @@
 // Misc.
 	$misc: (
-		z-index-base:		10000,
-		main-layout:		(
-			default:		(
-				rows:		2,
-				columns:	4,
-				pad:		0.5,
-				minHeight:	20em
-			),
-			xlarge:			(
-				rows:		2,
-				columns:	3,
-				pad:		0.5,
-				minHeight:	20em
-			),
-			large:			(
-				rows:		2,
-				columns:	2,
-				pad:		0.5,
-				minHeight:	20em
-			),
-			medium:			(
-				rows:		3,
-				columns:	2,
-				pad:		0.5,
-				minHeight:	18em
-			),
-			xsmall:			(
-				rows:		2,
-				columns:	1,
-				pad:		0.5,
-				minHeight:	18em
-			)
-		)
+		bg:					#348cb2 url("images/bg.jpg") bottom left,
+		bg-width:			1500px
 	);
 
 // Duration.
 	$duration: (
-		transition:			0.2s,
+		bg:					60s,
+		wrapper:			3s,
+		overlay:			1.5s,
 		header:				1s,
-		panel:				0.5s,
-		modal:				0.5s,
-		thumb:				0.15s
+		nav-icons:			0.5s
 	);
 
 // Size.
 	$size: (
-		element-height:		2.75em,
-		element-margin:		2em,
-		header:				4em
+		nav-icon-wrapper:	5.35em,
+		nav-icon:			1.75em
 	);
 
 // Font.
 	$font: (
-		family:				('Source Sans Pro', Helvetica, sans-serif),
-		family-fixed:		('Courier New', monospace),
-		weight:				300,
-		weight-bold:		300,
-		weight-extrabold:	400,
-		kerning:			0.025em,
-		kerning-alt:		0.1em
 	);
 
 // Palette.
 	$palette: (
-		bg:					#242629,
-		bg-alt:				#1f2224,
-		bg-overlay:			transparentize(#242629, 0.75),
-		bg-overlay-alt:		transparentize(#242629, 0.5),
-		bg-ie-overlay:		transparentize(#242629, 0.45),
-		bg-ie-overlay-alt:	transparentize(#242629, 0.2),
-		fg:					#a0a0a1,
-		fg-bold:			#ffffff,
-		fg-medium:			#707071,
-		fg-light:			#505051,
-		border:				#36383c,
-		border-bg:			#34363b,
-		border-bg-alt:		#44464b,
-		accent1:			#34a58e
+		bg:					#fff,
+		fg:					#fff,
+
+		nav-icon: (
+			hover-bg:		rgba(255,255,255,0.175),
+			hover-fg:		#fff,
+			active-bg:		rgba(255,255,255,0.35),
+			active-fg:		#fff
+		)
 	);
